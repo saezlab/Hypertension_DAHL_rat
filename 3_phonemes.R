@@ -25,7 +25,7 @@ library(UniProt.ws)
 library(igraph)
 library(BioNet)
 
-setwd('/mnt/DB/Dropbox/JRC_COMBINE/DAHL_rat_Markus')
+setwd('/mnt/db/Dropbox/JRC_COMBINE/DAHL_rat_Markus')
 
 # Loading PHONEMeS-ILP scripts
 sdir = 'PHONEMeS_ILP'
@@ -53,8 +53,8 @@ convert = function(upids, up){
 ###############################################################################
 # Building the background network table
 ksn = read_tsv(paste(in_dir,
-                     'omnipath_webservice_ptms.csv',
-                     #'ks_net.txt',
+                     #'omnipath_webservice_ptms.csv',
+                     'ks_net.txt',
                      sep='/'))
 
 bn = as.data.frame(ksn[-ncol(ksn)])
@@ -124,10 +124,6 @@ bn$K.AC <- bn$K.ID
 
 ###############################################################################
 # Building GMM object
-#ggm_list = buildDataObject(ttList=ttops, pThresh=0.1, pValIdx=6, measIdx=1,
-#                          fcIdx=2,
-#                          organism="RAT")
-# bn$dataID = paste(bn[, 'S.AC'], paste0(bn[, 'res'], bn[, 'pos']), sep='_')
 gmm_list = buildInputs(tableTopList=ttops, fcThresh=NULL, pThresh=c(0.1, 0.1),
                        idxID=1, idxFC=2, idxPval=5, mappingTable=NULL,
                        namesConditions=names(ttops))
@@ -148,24 +144,14 @@ experiments = list(tp1=c(2), tp2=c(1))
 
 #Generating the networks
 
-############# FIXME v: error in next line
-
+source('PHONEMeS_ILP/runPHONEMeS_dt.R')
 
 tpSIF = runPHONEMeS_dt(targets.P=targets.P, conditions=conditions,
                        dataGMM=dataGMM, experiments=experiments, bg=bgn,
                        nIter=100)
 
-write.table(x=tpSIF, file="pdgfr_tp_analysis.txt", quote=F, sep="\t",
+write.table(x=tpSIF, file="results_PHONEMeSdt_analysis.txt", quote=F, sep="\t",
             row.names=F)
-
-# write.table(x = tpSIF[which(as.numeric(tpSIF[, 2])>=5), ], file = "pdgfr_tp_analysis_cutoff_5.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-# write.table(x = tpSIF[which(as.numeric(tpSIF[, 2])>=10), ], file = "pdgfr_tp_analysis_cutoff_10.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-# write.table(x = tpSIF[which(as.numeric(tpSIF[, 2])>=20), ], file = "pdgfr_tp_analysis_cutoff_20.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-# write.table(x = tpSIF[which(as.numeric(tpSIF[, 2])>=50), ], file = "pdgfr_tp_analysis_cutoff_50.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-# write.table(x = tpSIF[which(as.numeric(tpSIF[, 2])>=60), ], file = "pdgfr_tp_analysis_cutoff_60.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-# write.table(x = tpSIF[which(as.numeric(tpSIF[, 2])>=70), ], file = "pdgfr_tp_analysis_cutoff_70.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-# write.table(x = tpSIF[which(as.numeric(tpSIF[, 2])>=80), ], file = "pdgfr_tp_analysis_cutoff_80.txt", quote = FALSE, sep = "\t", row.names = FALSE)
-
 
 nodesAttributes = assignAttributes_tp(sif=tpSIF, dataGMM=dataGMM,
                                       targets=targets.P[[1]], writeAttr=T)
