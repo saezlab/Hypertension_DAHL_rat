@@ -23,7 +23,7 @@
 library(readr)
 library(dplyr)
 
-library(omicToolsTest)
+#library(omicToolsTest)
 
 setwd('/mnt/db/Dropbox/JRC_COMBINE/DAHL_rat_Markus')
 
@@ -56,7 +56,7 @@ targets[, 'condition'] = cond
 
 write.csv(targets, paste(in_dir, 'targets.csv', sep='/'), row.names=F, quote=F)
 
-# Do the plots
-magicPlotMaker(data, outpath=out_dir, targets=targets)
+# Save the results
+#magicPlotMaker(data, outpath=out_dir, targets=targets)
 data$ids = rownames(data)
 write_csv(data, paste(in_dir, 'data.csv', sep='/'))
