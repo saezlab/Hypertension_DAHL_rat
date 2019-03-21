@@ -148,8 +148,9 @@ tpSIF = runPHONEMeS_dt(targets.P=targets.P, conditions=conditions,
                        dataGMM=dataGMM, experiments=experiments, bg=bgn,
                        nIter=100)
 
-write.table(x=tpSIF, file="results_PHONEMeSdt_analysis.txt", quote=F, sep="\t",
-            row.names=F)
+write.table(x=tpSIF, file=paste(out_dir,
+								"results_PHONEMeSdt_analysis.txt", sep='/'),
+			quote=F, sep="\t", row.names=F)
 
 nodesAttributes = assignAttributes_tp(sif=tpSIF, dataGMM=dataGMM,
                                       targets=targets.P[[1]], writeAttr=T)
