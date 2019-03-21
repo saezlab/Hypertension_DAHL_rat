@@ -25,8 +25,6 @@ library(dplyr)
 
 #library(omicToolsTest)
 
-setwd('/mnt/db/Dropbox/JRC_COMBINE/DAHL_rat_Markus')
-
 in_dir = 'data'
 out_dir = 'results'
 ifelse(!dir.exists(out_dir), dir.create(out_dir, recursive=T), F)
