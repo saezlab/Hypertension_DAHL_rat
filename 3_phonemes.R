@@ -25,8 +25,6 @@ library(UniProt.ws)
 library(igraph)
 library(BioNet)
 
-setwd('/mnt/db/Dropbox/JRC_COMBINE/DAHL_rat_Markus')
-
 # Loading PHONEMeS-ILP scripts
 sdir = 'PHONEMeS_ILP'
 scripts = list.files(sdir)
@@ -91,21 +89,21 @@ for(f in files){
     ttops[[name]] = ttop
 }
 
-bn <- bn[complete.cases(bn), ]
-proteins <- c(bn$S.AC, bn$K.AC)
-genes <- c(bn$S.ID, bn$K.ID)
+bn = bn[complete.cases(bn), ]
+proteins = c(bn$S.AC, bn$K.AC)
+genes = c(bn$S.ID, bn$K.ID)
 
 for(ii in 1:length(ttops)){
   
   for(jj in 1:nrow(ttops[[ii]])){
     
-    prot <- strsplit(x = ttops[[ii]][jj, 1], split = "_", fixed = TRUE)[[1]][1]
-    residue <- strsplit(x = ttops[[ii]][jj, 1], split = "_", fixed = TRUE)[[1]][2]
+    prot = strsplit(x=ttops[[ii]][jj, 1], split="_", fixed=T)[[1]][1]
+    residue = strsplit(x=ttops[[ii]][jj, 1], split="_", fixed=T)[[1]][2]
     
-    idx <- which(proteins==prot)
+    idx = which(proteins == prot)
     if(length(idx)>0){
       # print(idx)
-      ttops[[ii]][jj, 1] <- paste0(genes[idx[1]], "_", residue)
+      ttops[[ii]][jj, 1] = paste0(genes[idx[1]], "_", residue)
       
     }
     
@@ -119,8 +117,8 @@ for(ii in 1:length(ttops)){
   
 }
 
-bn$S.AC <- bn$S.ID
-bn$K.AC <- bn$K.ID
+bn$S.AC = bn$S.ID
+bn$K.AC = bn$K.ID
 
 ###############################################################################
 # Building GMM object
@@ -144,7 +142,7 @@ experiments = list(tp1=c(2), tp2=c(1))
 
 #Generating the networks
 
-source('PHONEMeS_ILP/runPHONEMeS_dt.R')
+source(paste(sdir, 'runPHONEMeS_dt.R', sep='/'))
 
 tpSIF = runPHONEMeS_dt(targets.P=targets.P, conditions=conditions,
                        dataGMM=dataGMM, experiments=experiments, bg=bgn,
