@@ -2,7 +2,8 @@
 
 The following repository contains the scripts used for the analysis of the
 phosphorylation data from DAHL rats using
-[PHONEMeS-ILP](https://github.com/saezlab/PHONEMeS-ILP).
+[PHONEMeS-ILP](https://github.com/saezlab/PHONEMeS-ILP). Note that in order to run the ILP algorithm
+you need to obtain a copy of `cplex`'s executable (see PHONEMeS-ILP documentation for more information).
 
 It is assumed that the contents of the [`PHONEMeS-ILP/Public` folder](https://github.com/saezlab/PHONEMeS-ILP/tree/master/Public) are inside a subfolder on the working directory.
 
