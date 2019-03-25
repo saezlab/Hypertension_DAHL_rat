@@ -51,7 +51,6 @@ convert = function(upids, up){
 ###############################################################################
 # Building the background network table
 ksn = read_tsv(paste(in_dir,
-                     #'omnipath_webservice_ptms.csv',
                      'ks_net.txt',
                      sep='/'))
 
@@ -96,25 +95,19 @@ genes = c(bn$S.ID, bn$K.ID)
 for(ii in 1:length(ttops)){
   
   for(jj in 1:nrow(ttops[[ii]])){
-    
     prot = strsplit(x=ttops[[ii]][jj, 1], split="_", fixed=T)[[1]][1]
     residue = strsplit(x=ttops[[ii]][jj, 1], split="_", fixed=T)[[1]][2]
     
     idx = which(proteins == prot)
+
     if(length(idx)>0){
-      # print(idx)
       ttops[[ii]][jj, 1] = paste0(genes[idx[1]], "_", residue)
-      
     }
-    
   }
-  
 }
 
 for(ii in 1:length(ttops)){
-  
   rownames(ttops[[ii]]) <- ttops[[ii]][, 1]
-  
 }
 
 bn$S.AC = bn$S.ID
