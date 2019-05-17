@@ -26,7 +26,7 @@ library(igraph)
 library(BioNet)
 
 # Loading PHONEMeS-ILP scripts
-sdir = 'PHONEMeS_ILP'
+sdir = 'Public'
 scripts = list.files(sdir)
 scripts = scripts[endsWith(scripts, '.R')]
 
