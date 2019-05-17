@@ -5,7 +5,7 @@ phosphorylation data from DAHL rats using
 [PHONEMeS-ILP](https://github.com/saezlab/PHONEMeS-ILP). Note that in order to run the ILP algorithm
 you need to obtain a copy of `cplex`'s executable (see PHONEMeS-ILP documentation for more information).
 
-It is assumed that the contents of the [`PHONEMeS-ILP/Public` folder](https://github.com/saezlab/PHONEMeS-ILP/tree/master/Public) are inside a subfolder on the working directory.
+It is assumed that a copy of the [`PHONEMeS-ILP/Public` folder](https://github.com/saezlab/PHONEMeS-ILP/tree/master/Public) is inside the working directory along with `cplex` executable.
 
 ## Dependencies
 
@@ -24,8 +24,12 @@ All the scripts are written in R, the packages needed (apart from the scripts fr
 
 The kinase-substrate background network was extracted from OmniPath as of 15/2/2019. The PTM database was queried with the following parameters: `organisms=10116` and `types=phosphorylation,dephosphorylation` [LINK](http://omnipathdb.org/ptms?organisms=10116&types=phosphorylation,dephosphorylation).
 
-## Pipeline
+## Pipeline description
 
-1. `1_preprocessing.R`
-2. `2_diff_exp.R`
-3. `3_phonemes.R`
+- `1_preprocessing.R`: Cleans the metadata from the data table and generates the p
+hosphosite identifiers.
+- `2_diff_exp.R`: Performs the differential expression (phosphorylation) analysis.
+- `3_phonemes.R`: Runs the PHONEMeS-ILP analysis for multiple time-points. The tar
+get nodes used for the analysis are defined in lines 131 and 132.
+
+User can either run each script independently (using Rstudio or another GUI, or from the command line using `$ Rscript <name_of_the_script>`) or execute the whole pipeline with the makefile (`$ make`).
