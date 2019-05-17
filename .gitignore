@@ -3,7 +3,7 @@
 *.pdf
 *.png
 results/
-PHONEMeS_ILP/
+Public/
 cplex
 cplexCommand.txt
 
