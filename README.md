@@ -2,7 +2,13 @@
 
 The following repository contains the scripts used for the analysis of the
 phosphorylation data from DAHL rats using
-[PHONEMeS-ILP](https://github.com/saezlab/PHONEMeS-ILP). Note that in order to run the ILP algorithm
+[PHONEMeS-ILP](https://github.com/saezlab/PHONEMeS-ILP).
+Here you can find the corresponding article:
+> Rinschen MM, Palygin O, Guijas C, Palermo A, Palacio-Escat N, et al.
+[Metabolic rewiring of the hypertensive kidney
+](https://stke.sciencemag.org/content/12/611/eaax9760). *Science Signaling* 2019. **12**; 611: eaax9760
+
+Note that in order to run the ILP algorithm
 you need to obtain a copy of `cplex`'s executable (see PHONEMeS-ILP documentation for more information).
 
 It is assumed that a copy of the [`PHONEMeS-ILP/Public` folder](https://github.com/saezlab/PHONEMeS-ILP/tree/master/Public) is inside the working directory along with `cplex` executable.
